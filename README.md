@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeye İlişkin Özet
 
-## Getting Started
+Bu proje, kimlik doğrulama ve yetkilendirme işlemlerini yönetmek amacıyla Next.js ve NextAuth.js kullanılarak geliştirilmiştir. Projenin ana amacı, kullanıcıların giriş yapmasını sağlamak ve bazı özel içeriklere erişimlerini kontrol etmektir.
 
-First, run the development server:
+## Çevresel Değişkenler (`env.local`)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Proje, çevresel değişkenleri kullanarak yapılandırılmıştır. Aşağıda listelenen çevresel değişkenlerin `.env.local` dosyasında tanımlanması gerekmektedir:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `GOOGLE_CLIENT_ID`: Google OAuth kimlik doğrulama istemcisi ID'si
+- `GOOGLE_CLIENT_SECRET`: Google OAuth kimlik doğrulama istemcisi gizli anahtarı
+- `NEXTAUTH_SECRET`: NextAuth.js için kullanılan gizli anahtar
+- `NEXTAUTH_URL`: NextAuth.js oturum açma URL'si
+- `API_URL`: API hizmetinin temel URL'si
+- `CAT_API_URL`: Kedi resimlerini sağlayan bir API hizmetinin URL'si
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Yetkilendirme ve Kimlik Doğrulama
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Proje, NextAuth.js sağlayıcıları aracılığıyla kimlik doğrulama ve yetkilendirme süreçlerini yönetir. Aşağıda belirtilen sağlayıcılar kullanılır:
 
-## Learn More
+- **CredentialsProvider**: Kullanıcı adı ve şifre tabanlı kimlik doğrulama sağlar. Örnek kimlik bilgileri ile doğrulama gerçekleştirilir.
+- **GoogleProvider**: Google hesaplarıyla kimlik doğrulama sağlar. Google OAuth istemci kimliği ve gizli anahtar gereklidir.
 
-To learn more about Next.js, take a look at the following resources:
+## Özel Kimlik Doğrulama Mantığı
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`CredentialsProvider` sağlayıcısında, özel bir kimlik doğrulama mantığı uygulanır. Örneğin, belirli kullanıcı adı ve şifre ile doğrulama sağlanır. Yanlış kimlik bilgileri girildiğinde bir hata mesajı döndürülür.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Proje Kullanımı
 
-## Deploy on Vercel
+1. `.env.local` dosyasına yukarıda belirtilen çevresel değişkenleri ekleyin.
+2. Proje dosyalarını indirin ve projenin ana dizinine yerleştirin.
+3. Terminalde `npm install` komutunu kullanarak gerekli bağımlılıkları yükleyin.
+4. Terminalde `npm run dev` komutunu kullanarak projeyi başlatın.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Proje, kullanıcıların kimlik doğrulama süreçlerini yönetmek ve özel içeriklere erişimini denetlemek için temel bir yapı sunar.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## http://localhost:3000 
+
+- Buradan ortamı test edin
